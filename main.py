@@ -7,6 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions
+import HtmlTestRunner
+
 
 
 class DdocdocLoginTest(unittest.TestCase):
@@ -71,12 +73,16 @@ class DdocdocLoginTest(unittest.TestCase):
         WebDriverWait(self.driver, 3).until(
             EC.presence_of_element_located((By.ID, "com.bbros.sayup:id/tabName")))
         el_tabName_home = self.driver.find_element(by=AppiumBy.ID, value='com.bbros.sayup:id/tabName')
-        el_tabName_home.is_selected()
+        self.assertTrue(el_tabName_home.is_selected())
+
+    def test_upper(self):
+        self.assertEqual('foo'.upper(), 'fOO') #fail
 
 
     def tearDown(self):
         time.sleep(2)
         self.driver.quit()
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    reportFoler = "Report"
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=reportFoler, title='Test report', open_in_browser=True))

@@ -23,15 +23,18 @@ class WebDriverSetup(unittest.TestCase):
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', self.dc)
 
 
-
     #testcase
     def tearDown(self):
         time.sleep(2)
         self.driver.quit()
 
-
 if __name__ == '__main__':
-    emailLogin.test_email_login(webdriver.Remote('http://localhost:4723/wd/hub', self.dc))
+    setup = WebDriverSetup()
+    setup.setUp()
+    emailLogin().test_email_login(setup.driver)
     reportFoler = "Report"
     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=reportFoler, title='Test report', open_in_browser=True))
+
+
+
 

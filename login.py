@@ -3,10 +3,10 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import unittest
 
 
-
-class emailLogin():
+class emailLogin:
     def test_email_login(self):
         # element 노출될때까지 최대 10초 기다린다.
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "com.bbros.sayup:id/confirmBtn")))
